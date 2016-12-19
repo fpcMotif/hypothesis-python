@@ -44,7 +44,7 @@ class RunIsComplete(Exception):
     pass
 
 
-class TestRunner(object):
+class ConjectureRunner(object):
 
     def __init__(
         self, test_function, settings=None, random=None,

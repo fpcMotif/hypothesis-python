@@ -463,12 +463,12 @@ def given(*generator_arguments, **generator_kwargs):
                     verbose_report(last_exception[0])
                     data.mark_interesting()
 
-            from hypothesis.internal.conjecture.engine import TestRunner
+            from hypothesis.internal.conjecture.engine import ConjectureRunner
 
             falsifying_example = None
             database_key = str_to_bytes(fully_qualified_name(test))
             start_time = time.time()
-            runner = TestRunner(
+            runner = ConjectureRunner(
                 evaluate_test_data,
                 settings=settings, random=random,
                 database_key=database_key,
@@ -621,11 +621,11 @@ def find(specifier, condition, settings=None, random=None, database_key=None):
                 last_data[0] = data
         if success and not data.frozen:
             data.mark_interesting()
-    from hypothesis.internal.conjecture.engine import TestRunner
+    from hypothesis.internal.conjecture.engine import ConjectureRunner
     from hypothesis.internal.conjecture.data import ConjectureData, Status
 
     start = time.time()
-    runner = TestRunner(
+    runner = ConjectureRunner(
         template_condition, settings=settings, random=random,
         database_key=database_key,
     )
