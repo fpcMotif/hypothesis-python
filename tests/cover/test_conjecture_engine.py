@@ -25,7 +25,7 @@ from hypothesis import given, Phase, settings
 from hypothesis.database import ExampleDatabase
 from hypothesis.internal.compat import hbytes, int_from_bytes, \
     bytes_from_list
-from hypothesis.internal.conjecture.data import Status, TestData
+from hypothesis.internal.conjecture.data import Status, ConjectureData
 from hypothesis.internal.conjecture.engine import TestRunner
 
 MAX_SHRINKS = 2000
@@ -187,7 +187,7 @@ def test_variadic_draw():
     def b(data):
         if any(all(d) for d in draw_list(data)):
             data.mark_interesting()
-    l = draw_list(TestData.for_buffer(b))
+    l = draw_list(ConjectureData.for_buffer(b))
     assert len(l) == 1
     assert len(l[0]) == 1
 
